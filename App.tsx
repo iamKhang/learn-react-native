@@ -1,12 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const [khang, setKhang] = useState({
+    name: "Khang",
+    age: 20,
+  });
   return (
     <View style={styles.container}>
-      <View>
-        {/* Component con không kế thừa CSS từ cha (container) ngoại trừ các thuộc tính mặc định */}
-        <Text style={styles.header}>Hello World</Text>
-      </View>
+      <Text>
+          Lê Hoàng Khang is {khang.age} years old.
+      </Text>
+      <Button title="Happy birthday!"onPress={
+        () => {
+          setKhang({
+            ...khang,
+            age: khang.age + 1,
+          });
+        }
+      }/>
     </View>
   );
 }
@@ -18,18 +30,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-
-  demoCSS: {
-    color: "violet",
-    fontSize: 60,
-    borderColor: "green",
-    borderWidth: 1,
-  },
-
-  header: {
-    fontSize: 30,
-    color: "red",
-    fontWeight: "bold",
   },
 });

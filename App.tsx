@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Button,
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -23,7 +24,27 @@ export default function App() {
     <View style={styles.container}>
       <View>
         <Text>Student List</Text>
-        <ScrollView>
+ 
+        <FlatList
+          data={student}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                padding: 40,
+                backgroundColor: "red",
+                margin: 5,
+              }}
+            >
+              <Text>
+                {item.id} {item.name} {item.age}
+              </Text>
+            </View>
+          )}
+        >
+        </FlatList>
+
+        {/* <ScrollView>
           {student.map((item) => {
             return (
               <View
@@ -36,7 +57,7 @@ export default function App() {
               </View>
             );
           })}
-        </ScrollView>
+        </ScrollView> */}
       </View>
     </View>
   );

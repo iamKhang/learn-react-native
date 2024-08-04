@@ -1,52 +1,43 @@
-import { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
-  const [name, setName] = useState<string>("N/A");
-  const [age, setAge] = useState<number>(0);
-
+  const [student, setStudent] = useState([
+    { id: 1, name: "John", age: 20 },
+    { id: 2, name: "Doe", age: 21 },
+    { id: 3, name: "Smith", age: 22 },
+    { id: 4, name: "Alex", age: 23 },
+    { id: 5, name: "Tom", age: 24 },
+    { id: 6, name: "Jerry", age: 25 },
+    { id: 7, name: "Harry", age: 26 },
+    { id: 8, name: "Peter", age: 27 },
+  ]);
   return (
     <View style={styles.container}>
-      <Text>Name:</Text>
-      <TextInput
-        style={{
-          width: 200,
-          height: 40,
-          borderColor: "gray",
-          borderWidth: 1,
-        }}
-        onChangeText={(value) => {
-          setName(value);
-        }}
-        autoCapitalize="words"
-        multiline={true}
-        numberOfLines={4}
-      ></TextInput>
-
-      <Text>Age:</Text>
-      <TextInput
-        style={{
-          width: 200,
-          height: 40,
-          borderColor: "gray",
-          borderWidth: 1,
-        }}
-        onChangeText={(value) => {
-          setAge(+value);
-        }}
-        keyboardType="numeric"
-        maxLength={2}
-      ></TextInput>
-
-      <Text>
-        {name} is {age} years old.
-      </Text>
-      <Button
-        title="Happy birthday!"
-        onPress={() => {
-          setAge(age + 1);
-        }}
-      />
+      <View>
+        <Text>Student List</Text>
+        <ScrollView>
+          {student.map((item) => {
+            return (
+              <View
+                key={item.id}
+                style={{ padding: 40, backgroundColor: "lightgray", margin: 5 }}
+              >
+                <Text>
+                  {item.id} {item.name} {item.age}
+                </Text>
+              </View>
+            );
+          })}
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -56,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    paddingTop: 50,
+    paddingHorizontal: 20,
   },
 });
